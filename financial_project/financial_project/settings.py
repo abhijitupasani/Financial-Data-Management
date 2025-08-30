@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3qclyawf!3$-3h)l6no3ld-)9q!c1^@ocp-ln6h#^icwk3t114
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://transactionsapp-b3316d905d81.herokuapp.com/"]
 
 
 # Application definition
@@ -40,17 +40,28 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
+    'corsheaders', 
+    'drf_yasg',
     'transactions',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'django.middleware.common.CommonMiddleware',  
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
+]
+
+CORS_ALLOW_ALL_ORIGINS = True 
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
 ]
 
 ROOT_URLCONF = 'financial_project.urls'
@@ -83,16 +94,16 @@ WSGI_APPLICATION = 'financial_project.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'finserv_db',
-        'USER': 'finserv_user',
-        'PASSWORD': 'YourStrongPasswordHere',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'finserv_db',
+#         'USER': 'finserv_user',
+#         'PASSWORD': 'YourStrongPasswordHere',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 if 'test' in sys.argv:
     DATABASES = {
@@ -101,6 +112,16 @@ if 'test' in sys.argv:
             'NAME': ':memory:',
         }
     }
+
+import dj_database_url
+import os
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default='postgres://finserv_user:YourStrongPasswordHere@localhost:5432/finserv_db'
+    )
+}
+
 
 
 REST_FRAMEWORK = {
@@ -159,3 +180,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import django_heroku
+django_heroku.settings(locals())
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
+
+# Simplified static file serving.
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+

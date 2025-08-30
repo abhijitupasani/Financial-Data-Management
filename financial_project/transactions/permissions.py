@@ -4,18 +4,15 @@ class IsAdminOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
-        return request.user and request.user.is_staff
+        return request.user and request.user.is_authenticated and request.user.groups.filter(name='Admin').exists()
 
 class IsFinancialAnalystOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
-        # Placeholder for a real role check; assume all authenticated users for now
         if request.method in permissions.SAFE_METHODS:
             return True
-        return request.user and request.user.is_authenticated
+        return request.user and request.user.is_authenticated and request.user.groups.filter(name='Financial Analyst').exists()
 
 class IsAuditorReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
-        if request.method in permissions.SAFE_METHODS:
-            # Auditor role check could be added here
-            return request.user and request.user.is_authenticated
-        return False
+        return request.method in permissions.SAFE_METHODS and \
+               request.user and request.user.is_authenticated and request.user.groups.filter(name='Auditor').exists()
