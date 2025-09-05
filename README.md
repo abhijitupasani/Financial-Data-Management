@@ -1,4 +1,4 @@
-### Financial Project
+## Financial Project
 
 A Django REST API application for managing financial transactions and accounts, deployed on **Heroku**.
 
