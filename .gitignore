@@ -11,8 +11,8 @@ env/
 db.sqlite3
 *.log
 
-# Django migrations
-*/migrations/*
+# # Django migrations
+# */migrations/*
 
 # VSCode settings (optional)
 .vscode/
