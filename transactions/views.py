@@ -22,8 +22,8 @@ class LogoutView(APIView):
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all().order_by('id')
     serializer_class = AccountSerializer
-    # permission_classes = [permissions.IsAuthenticated,
-    #                       IsAdminOrReadOnly | IsFinancialAnalystOrReadOnly | IsAuditorReadOnly]
+    permission_classes = [permissions.IsAuthenticated,
+                          IsAdminOrReadOnly | IsFinancialAnalystOrReadOnly | IsAuditorReadOnly]
 
     def get_serializer(self, *args, **kwargs):
         kwargs['context'] = self.get_serializer_context()
@@ -33,8 +33,8 @@ class AccountViewSet(viewsets.ModelViewSet):
 class TransactionViewSet(viewsets.ModelViewSet):
     queryset = Transaction.objects.all().order_by('id')
     serializer_class = TransactionSerializer
-    # permission_classes = [permissions.IsAuthenticated,
-                        #   IsAdminOrReadOnly | IsFinancialAnalystOrReadOnly | IsAuditorReadOnly]
+    permission_classes = [permissions.IsAuthenticated,
+                          IsAdminOrReadOnly | IsFinancialAnalystOrReadOnly | IsAuditorReadOnly]
 
     def get_serializer(self, *args, **kwargs):
         kwargs['context'] = self.get_serializer_context()
