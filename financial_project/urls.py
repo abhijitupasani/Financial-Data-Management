@@ -23,6 +23,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from rest_framework.authtoken.views import obtain_auth_token
 schema_view = get_schema_view(
     openapi.Info(
         title="Financial Services API",
@@ -38,8 +39,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # Django admin
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     # Your app's URLs
     path('', include('transactions.urls')),
 
