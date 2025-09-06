@@ -79,6 +79,11 @@ python manage.py createsuperuser
 ```bash
 python manage.py runserver
 ```
+# 📖 API Documentation
+
+Interactive API docs are available when running the server:
+Swagger UI 👉 http://localhost:8000/swagger/
+ReDoc UI 👉 http://localhost:8000/redoc/
 
 ---
 
