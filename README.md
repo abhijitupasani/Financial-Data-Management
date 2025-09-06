@@ -1,10 +1,10 @@
-## 💼 Financial Project
+# 💼 Financial Project
 
 A Django REST API application for managing financial transactions and accounts, deployed on **Heroku**.
 
 ---
 
-## 📌 Project Overview
+# 📌 Project Overview
 
 This project provides an API for creating and managing financial accounts and transactions.  
 It supports **role-based access control** with three user groups:
@@ -17,7 +17,7 @@ The API uses **Token Authentication** for secure access.
 
 ---
 
-## 🚀 Features
+# 🚀 Features
 
 - CRUD operations for **Accounts** and **Transactions**  
 - 🔐 Role-based permissions  
@@ -27,9 +27,9 @@ The API uses **Token Authentication** for secure access.
 
 ---
 
-## ⚙️ Setup and Installation
+# ⚙️ Setup and Installation
 
-# 🧰 Prerequisites
+## 🧰 Prerequisites
 - Python **3.9+**
 - pip
 - Git
@@ -38,7 +38,7 @@ The API uses **Token Authentication** for secure access.
 
 ---
 
-# 💻 Local Setup
+## 💻 Local Setup
 
 1) **Clone the repository**
 ```bash
@@ -82,13 +82,13 @@ python manage.py runserver
 
 ---
 
-## 🚦 Deployment on Heroku (Currently Paused)
+# 🚦 Deployment on Heroku (Currently Paused)
 
 This project was deployed on **Heroku** under the app name `transactionsapp`.  
 At present, the deployment has been **paused to avoid billing**, but you can easily restore it using the provided database dump **`latest.dump`**.  
 ℹ️ Heroku no longer offers free Postgres plans; use the **Essential-0** plan when reactivating.
 
-# 🪄 Steps to Reactivate
+## 🪄 Steps to Reactivate
 
 1) **Login to Heroku**
 ```bash
@@ -137,14 +137,14 @@ heroku ps:scale web=1 --app transactionsapp
 
 ---
 
-## 🏗️ Architecture & Design
+# 🏗️ Architecture & Design
 
-# 🧱 Apps and Models
+## 🧱 Apps and Models
 The `transactions` app contains two main models:
 - **Account**
 - **Transaction**
 
-# 🔐 Authentication & Permissions
+## 🔐 Authentication & Permissions
 - Uses **Django REST Framework's TokenAuthentication**  
 - Custom permission classes:  
   - `IsAdminOrReadOnly`  
@@ -154,7 +154,7 @@ The `transactions` app contains two main models:
 
 ---
 
-# 📡 API Endpoints
+## 📡 API Endpoints
 
 | Endpoint               | Method | Description                  | Authentication | Permissions |
 |------------------------|--------|------------------------------|----------------|-------------|
@@ -170,7 +170,7 @@ The `transactions` app contains two main models:
 
 ---
 
-# 📝 Sample Request (Create Account)
+## 📝 Sample Request (Create Account)
 
 ```http
 POST /accounts/ HTTP/1.1
@@ -189,7 +189,7 @@ Content-Type: application/json
 
 ---
 
-# 🧪 Testing and Debugging
+## 🧪 Testing and Debugging
 
 - Use **Postman** or `curl` to test API with token authentication  
 - Check **Heroku logs** for errors:
